@@ -1,26 +1,26 @@
-NanoPi-NEO‚Åi2s
+NanoPi-NEOã§i2s
 
 
-(1) kernel‚Ìæ“¾æ
+(1) kernelã®å–å¾—å…ˆ
 
-@@https://github.com/friendlyarm/linux.git
+ã€€ã€€https://github.com/friendlyarm/linux.git
     Branch:sunxi-4.11.y
 
-(2) kernel‚Ìƒrƒ‹ƒh‘O‚É‚·‚é‚±‚Æ
-@@
-   ‡@@alsa(kernel)‚Éƒpƒbƒ`‚ğ“–‚Ä‚éB
-@@@
-@@@ALSA-Add-rate-defines-for-352k8-and-384k.patch(https://patchwork.kernel.org/patch/9158919/)
+(2) kernelã®ãƒ“ãƒ«ãƒ‰å‰ã«ã™ã‚‹ã“ã¨
+ã€€ã€€
+   â‘ ã€€alsa(kernel)ã«ãƒ‘ãƒƒãƒã‚’å½“ã¦ã‚‹ã€‚
+ã€€ã€€ã€€
+ã€€ã€€ã€€ALSA-Add-rate-defines-for-352k8-and-384k.patch(https://patchwork.kernel.org/patch/9158919/)
 
-   ‡A@kernel‚ÌˆÈ‰º‚Ìƒ\[ƒXƒR[ƒh‚ğC³
-@@@
+   â‘¡ã€€kernelã®ä»¥ä¸‹ã®ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’ä¿®æ­£
+ã€€ã€€ã€€
        (sound/soc/sunxi/sun8i-i2s.c)
-         192000‚Ì•”•ªi4ƒJŠj‚ğ384000‚ÉC³
-@
-@@@ (sound/soc/codecs/pcm5102a.c)
-         192000‚Ì•”•ªi1ƒJŠj‚ğ384000‚ÉC³
+         192000ã®éƒ¨åˆ†ï¼ˆ4ã‚«æ‰€ï¼‰ã‚’384000ã«ä¿®æ­£
+ã€€
+ã€€ã€€ã€€ (sound/soc/codecs/pcm5102a.c)
+         192000ã®éƒ¨åˆ†ï¼ˆ1ã‚«æ‰€ï¼‰ã‚’384000ã«ä¿®æ­£
 
-   ‡B@make linux-menuconfig
+   â‘¢ã€€make linux-menuconfig
        
        Device Drivers
                 ----->Sound card support
@@ -29,16 +29,12 @@ NanoPi-NEO‚Åi2s
                                                                                          --------->Allwinner Soc Audio support
                                                                                                       [*]Allwinner sun8i I2S Support
 
-(3) kernel‚Ìƒrƒ‹ƒhŒã‚É‚·‚é‚±‚Æ
-@@
-@@sun8i-h3-nanopi-neo.dtb‚ğC³‚·‚éB
-@@
-@@$ dtc -I dtb sun8i-h3-nanopi-neo.dtb -O dts -o sun8i-h3-nanopi-neo.dts
+(3) kernelã®ãƒ“ãƒ«ãƒ‰å¾Œã«ã™ã‚‹ã“ã¨
+ã€€ã€€
+ã€€ã€€sun8i-h3-nanopi-neo.dtbã‚’ä¿®æ­£ã™ã‚‹ã€‚
+ã€€ã€€
+ã€€ã€€$ dtc -I dtb sun8i-h3-nanopi-neo.dtb -O dts -o sun8i-h3-nanopi-neo.dts
 
-      i2s@01c220000‚Æpcm5102a-codec‚Ìstatus‚ğ "disabled"‚©‚ç"okay"‚ÉC³
+      i2s@01c220000ã¨pcm5102a-codecã®statusã‚’ "disabled"ã‹ã‚‰"okay"ã«ä¿®æ­£
 
-@@$ dtc -I dts sun8i-h3-nanopi-neo.dts -O dtb -o sun8i-h3-nanopi-neo.dtb
-
-
-‚ ‚Æ‚ÍzImage‚Æsun8i-h3-nanopi-neo.dtb‚ğ“ü‚ê‘Ö‚¦‚é‚¾‚¯B
-@@
+ã€€ã€€$ dtc -I dts sun8i-h3-nanopi-neo.dts -O dtb -o sun8i-h3-nanopi-neo.dtb
