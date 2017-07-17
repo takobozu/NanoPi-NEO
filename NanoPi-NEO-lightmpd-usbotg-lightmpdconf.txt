@@ -1,0 +1,18 @@
+NanoPi-NEO用lightmpd1.04を使って簡単、usb-otgネットワーク設定
+
+ lightmpd1.04のlightmpd.confのnetwork設定を以下のようにするだけ
+
+	[network]
+		interface=usb0
+		address=10.0.0.2
+		netmask=255.255.255.252
+		gateway=10.0.0.1
+		nameserver=192.168.0.0
+		domain=mydomain.jp
+
+	[network:nasgate]
+		interface=usb1
+		address=10.0.1.2
+		netmask=255.255.255.252
+
+
