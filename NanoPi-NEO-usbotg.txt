@@ -1,0 +1,34 @@
+NanoPi-NEOによるusb-otg(usb0,usb1)のためのカーネルオプションの設定等
+
+
+（１）make linux-menuconfig(by buildroot)
+
+     Device Drivers
+	       --->[*]Network device support
+				     --->[*]USB Network Adapters
+						         --->[*]Multi-purpose USB Ethernet Adapters
+											       --->[*]CDC Ethernet support(smart...)
+
+     
+	       --->[*]USB support
+                          --->[*]Inventra Highspeed Dual Role Controller(TI..)
+                                   MUSB Mode Selection (Dual Roll mode) 
+                              
+                              [*]Allwinner(sunxi)
+
+                              [*]USB Gadget Support
+                                               --->[*]USB Gadget Drivers(Ethernel Gadget(with CDC Ethernet support))
+                                                        Ethernet Gadget (with CDC Ethernet support)
+
+
+
+（２）sun8i-h3-nanopi-neo.dtbの修正
+
+　　　$ dtc -I dtb sun8i-h3-nanopi-neo.dtb -O dts -o sun8i-h3-nanopi-neo.dts
+
+        usb@01c19000のstatusを"disabled"から"okay"にする。またdr_mode = "otg";を加える。
+
+　　　$ dtc -I dts sun8i-h3-nanopi-neo.dts -O dtb -o sun8i-h3-nanopi-neo.dtb
+
+
+ 						    
