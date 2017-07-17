@@ -1,0 +1,44 @@
+NanoPi-NEOでi2s
+
+
+(1) kernelの取得先
+
+　　https://github.com/friendlyarm/linux.git
+    Branch:sunxi-4.11.y
+
+(2) kernelのビルド前にすること
+　　
+   ①　alsa(kernel)にパッチを当てる。
+　　　
+　　　ALSA-Add-rate-defines-for-352k8-and-384k.patch(https://patchwork.kernel.org/patch/9158919/)
+
+   ②　kernelの以下のソースコードを修正
+　　　
+       (sound/soc/sunxi/sun8i-i2s.c)
+         192000の部分（4カ所）を384000に修正
+　
+　　　 (sound/soc/codecs/pcm5102a.c)
+         192000の部分（1カ所）を384000に修正
+
+   ③　make linux-menuconfig
+       
+       Device Drivers
+                ----->Sound card support
+                                  ----->Advanced Linux Sound Archtecture
+                                                                 ------>ALSA for Soc audio support
+                                                                                         --------->Allwinner Soc Audio support
+                                                                                                      [*]Allwinner sun8i I2S Support
+
+(3) kernelのビルド後にすること
+　　
+　　sun8i-h3-nanopi-neo.dtbを修正する。
+　　
+　　$ dtc -I dtb sun8i-h3-nanopi-neo.dtb -O dts -o sun8i-h3-nanopi-neo.dts
+
+      i2s@01c220000とpcm5102a-codecのstatusを "disabled"から"okay"に修正
+
+　　$ dtc -I dts sun8i-h3-nanopi-neo.dts -O dtb -o sun8i-h3-nanopi-neo.dtb
+
+
+あとはzImageとsun8i-h3-nanopi-neo.dtbを入れ替えるだけ。
+　　
