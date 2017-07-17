@@ -1,0 +1,58 @@
+NanoPi-NEO のu-bootについて
+
+（１）u-boot-sunxi-with-spl.binについて
+
+　　　これは、MBRの役目らしい。
+
+　　（イ）ｓｄカードをfat32でフォーマット
+
+　　　　　　$ sudo mkfs.vfat -v -c -F 32 /dev/sdb1
+
+     (ロ）u-boot-sunxi-with-spl.binの生成（by buildroot)
+
+            $ make menuconfig
+
+		Bootloaders
+		  [*]U-Boot
+			Build system (Kconfig)
+			U-Boot Version (Custom tarball)
+		  (/home/inthedark/dl/u-boot_2017.05_20170525.tar.gz) URL of custom --->https://www.mediafire.com/folder/n5o8ihvqhnf6s/
+											Nanopi-NEO/sourcesからダウンロード
+
+　　　　　　　　
+　　　　　　　　  (nanopi_neo) Board defconfig
+                  [*]   U-Boot needs dtc
+                        u-Boot binary format ----> [*] Custom(specify bellow)
+                                                   (u-boot-sunxi-with-spl.bin) U-boot binary format :custom names
+
+      (ハ）u-boot-sunxi-with-spl.binの書き込み
+
+	　　$ sudo dd if=u-boot-sunxi-with-spl.bin of=/dev/sdb bs=1024 seek=8
+
+（２）boot.cmdの作成
+
+	setenv kernel_file		zImage
+	setenv initrd_file		rootfs.cpio.gz
+	setenv rootfstype		ext2
+	setenv ramrootarg rootfstype=${rootfstype}
+	setenv bootargs console=${console} S{optargs} ${ramrootarg}
+	
+	echo "fdt_addr_r	$fdt_addr_r"
+	echo "rmdisk_addr_r	$ramdisk_addr_r"
+	echo "kernel_addr_r	$kernel_addr_r"
+
+	load mmc 0:1 ${fdt_addr_r}	${fdtfile}
+	load mmc 0:1 ${ramdisk_addr_r}	${initrd_file};setenv initrd_size ${filesize}
+	load mmc 0:1 ${kernel_addr_r}	${kernel_file}
+
+	bootz ${kernel_addr_r} ${ramdisk_addr_r}:${initrd_size} ${fdt_addr_r}
+
+（３）bootcmdをu-bootが読み込める形式boot.scrに変換
+
+　　　　mkimage -C none -A arm -T script -d boot.cmd boot.scr
+
+（４）sdカードに転送
+
+　　　上記（１）(ハ）済みのsdカードに以下のファイルをコピー
+
+　　　boot.scr  zImage  rootfs.cpio.gz  sun8i-h3-nanopi-neo.dtb
