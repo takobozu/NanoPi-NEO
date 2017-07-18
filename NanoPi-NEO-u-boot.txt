@@ -1,14 +1,14 @@
-NanoPi-NEO ‚Ìu-boot‚É‚Â‚¢‚Ä
+NanoPi-NEO ã®u-bootã«ã¤ã„ã¦
 
-i‚Pju-boot-sunxi-with-spl.bin‚É‚Â‚¢‚Ä
+ï¼ˆï¼‘ï¼‰u-boot-sunxi-with-spl.binã«ã¤ã„ã¦
 
-@@@‚±‚ê‚ÍAMBR‚Ì–ğ–Ú‚ç‚µ‚¢B
+ã€€ã€€ã€€ã“ã‚Œã¯ã€MBRã®å½¹ç›®ã‚‰ã—ã„ã€‚
 
-@@iƒCj‚“‚„ƒJ[ƒh‚ğfat32‚ÅƒtƒH[ƒ}ƒbƒg
+ã€€ã€€ï¼ˆã‚¤ï¼‰ï½“ï½„ã‚«ãƒ¼ãƒ‰ã‚’fat32ã§ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 
-@@@@@@$ sudo mkfs.vfat -v -c -F 32 /dev/sdb1
+ã€€ã€€ã€€ã€€ã€€ã€€$ sudo mkfs.vfat -v -c -F 32 /dev/sdb1
 
-     (ƒju-boot-sunxi-with-spl.bin‚Ì¶¬iby buildroot)
+     (ãƒ­ï¼‰u-boot-sunxi-with-spl.binã®ç”Ÿæˆï¼ˆby buildroot)
 
             $ make menuconfig
 
@@ -16,20 +16,20 @@ NanoPi-NEO ‚Ìu-boot‚É‚Â‚¢‚Ä
 		  [*]U-Boot
 			Build system (Kconfig)
 			U-Boot Version (Custom tarball)
-		  (/home/inthedark/dl/u-boot_2017.05_20170525.tar.gz) URL of custom --->https://www.mediafire.com/folder/n5o8ihvqhnf6s/
-											Nanopi-NEO/sources‚©‚çƒ_ƒEƒ“ƒ[ƒh
+		  (/home/inthedark/dl/u-boot_2017.05_20170707.tar.gz) URL of custom --->https://www.mediafire.com/folder/n5o8ihvqhnf6s/
+											Nanopi-NEO/sourcesã‹ã‚‰ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 
-@@@@@@@@
-@@@@@@@@  (nanopi_neo) Board defconfig
+ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€
+ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€  (nanopi_neo) Board defconfig
                   [*]   U-Boot needs dtc
                         u-Boot binary format ----> [*] Custom(specify bellow)
                                                    (u-boot-sunxi-with-spl.bin) U-boot binary format :custom names
 
-      (ƒnju-boot-sunxi-with-spl.bin‚Ì‘‚«‚İ
+      (ãƒï¼‰u-boot-sunxi-with-spl.binã®æ›¸ãè¾¼ã¿
 
-	@@$ sudo dd if=u-boot-sunxi-with-spl.bin of=/dev/sdb bs=1024 seek=8
+	ã€€ã€€$ sudo dd if=u-boot-sunxi-with-spl.bin of=/dev/sdb bs=1024 seek=8
 
-i‚Qjboot.cmd‚Ìì¬
+ï¼ˆï¼’ï¼‰boot.cmdã®ä½œæˆ
 
 	setenv kernel_file		zImage
 	setenv initrd_file		rootfs.cpio.gz
@@ -47,12 +47,12 @@ NanoPi-NEO ‚Ìu-boot‚É‚Â‚¢‚Ä
 
 	bootz ${kernel_addr_r} ${ramdisk_addr_r}:${initrd_size} ${fdt_addr_r}
 
-i‚Rjbootcmd‚ğu-boot‚ª“Ç‚İ‚ß‚éŒ`®boot.scr‚É•ÏŠ·
+ï¼ˆï¼“ï¼‰bootcmdã‚’u-bootãŒèª­ã¿è¾¼ã‚ã‚‹å½¢å¼boot.scrã«å¤‰æ›
 
-@@@@mkimage -C none -A arm -T script -d boot.cmd boot.scr
+ã€€ã€€ã€€ã€€mkimage -C none -A arm -T script -d boot.cmd boot.scr
 
-i‚SjsdƒJ[ƒh‚É“]‘—
+ï¼ˆï¼”ï¼‰sdã‚«ãƒ¼ãƒ‰ã«è»¢é€
 
-@@@ã‹Li‚Pj(ƒnjÏ‚İ‚ÌsdƒJ[ƒh‚ÉˆÈ‰º‚Ìƒtƒ@ƒCƒ‹‚ğƒRƒs[
+ã€€ã€€ã€€ä¸Šè¨˜ï¼ˆï¼‘ï¼‰(ãƒï¼‰æ¸ˆã¿ã®sdã‚«ãƒ¼ãƒ‰ã«ä»¥ä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ”ãƒ¼
 
-@@@boot.scr  zImage  rootfs.cpio.gz  sun8i-h3-nanopi-neo.dtb
+ã€€ã€€ã€€boot.scr  zImage  rootfs.cpio.gz  sun8i-h3-nanopi-neo.dtb
