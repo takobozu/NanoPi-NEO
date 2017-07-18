@@ -20,7 +20,7 @@ NanoPi-NEOでi2s
 　　　 (sound/soc/codecs/pcm5102a.c)
          192000の部分（1カ所）を384000に修正
 
-   ③　make linux-menuconfig
+   ③　make linux-menuconfig (by buildroot)
        
        Device Drivers
                 ----->Sound card support
