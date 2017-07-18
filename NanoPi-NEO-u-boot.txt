@@ -18,7 +18,13 @@ NanoPi-NEO のu-bootについて
 			U-Boot Version (Custom tarball)
 		  (/home/inthedark/dl/u-boot_2017.05_20170707.tar.gz) URL of custom --->https://www.mediafire.com/folder/n5o8ihvqhnf6s/
 											Nanopi-NEO/sourcesからダウンロード
-
+  
+                もしくは
+		  [*]U-Boot
+		        Build system (Kconfig)
+			U-Boot Version (Custom Git repository)
+		  (https://github.com/friendlyarm/u-boot.git) URL of custom repository
+		  (sunxi-v2017.x) Custom repository version
 　　　　　　　　
 　　　　　　　　  (nanopi_neo) Board defconfig
                   [*]   U-Boot needs dtc
@@ -56,3 +62,7 @@ NanoPi-NEO のu-bootについて
 　　　上記（１）(ハ）済みのsdカードに以下のファイルをコピー
 
 　　　boot.scr  zImage  rootfs.cpio.gz  sun8i-h3-nanopi-neo.dtb
+   
+（５）その他の注意事項
+　　　kernel,ubootのソースコードはgithubのリポジトリからとってくることも、https://www.mediafire.com/folder/n5o8ihvqhnf6s/Nanopi-NEO/sources
+   　からとってくることもできるが、mediafire.comの内容は更新が遅い傾向にある。
