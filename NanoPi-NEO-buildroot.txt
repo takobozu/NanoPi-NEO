@@ -1,0 +1,70 @@
+﻿NanoPi-NEOによるupnpgw作成のためのbuildroot設定　(make menuconfig）
+
+
+(1) Target options
+    Target Architecture (ARM(little endian))
+    Target Binary Format(ELF)
+    Target Architecture Variant (cortex-A7)
+    Target ABI (EABIhf)
+    Floating point strategy (NEON/VFPv4)
+    ARM instruction set (ARM)
+
+(2) Toolchain
+    Toolchain type (External toolchain)
+    Toolchain (Linaro ARM 2017.2)
+    [*] Enable MMU support
+    (-O2) Target Optimizations
+
+(3) System configuration
+    (nanopi-neo) System hostname
+    (Welcome to Buildroot for the NanoPi NEO) System banner
+         Password encoding (md5)
+	 Init system (BusyBox)
+         /dev management (Dynamic using devtmpfs only)
+    (system/device_table.txt) Path to the permission tables
+    [*] Enable root login with password
+    (XXXXX) Root password
+           /bin/sh (busybox' default shell)
+    [*] Run a getty (login prompt) after boot
+    [*] remount root filesystem read-write during boot
+    [*] Purge unwanted locales
+    (C en_US) Locales to keep
+    (/home/inthedark/buildroot/board/inthedark/upnpgw-nanopi-neo-otg/rootfs-overlay)Root filesystem overlay directories
+
+(4) Kernel
+    [*] Linux Kernel
+         Kernel version (Custom Git repository)
+    (https://github.com/friendlyarm/linux.git) URL of custom repository
+    (sunxi-4.11.y) Custom repository version
+    (/home/inthedark/nanopineo.config) Custom kernel patches
+          Kernel configuration (Using an in-tree defconfig file)
+    (sunxi) Defconfig name
+            Kernel binary format (zImage)
+            Kernel compression format (gzip compression)
+    [*] Build a Device Tree Blob (DTB)
+            Device tree source (Use a device tree present in the kernel)
+    (sun8i-h3-nanopi-neo) Device Tree Source file names
+
+(5) Target packages
+    [*] polipo
+    [*] upmpdcli
+
+(6) Filesystem images
+    [*] cpio the root filesystem(for use as an initial RAM filesystem
+        Compression method (gzip)
+
+(7) Bootloaders
+    [*] U-Boot
+          Build system (Kconfig)
+          U-Boot Version (Custom Git repository)
+    (https://github.com/friendlyarm/u-boot.git) URL of custom repository
+    (sunxi-v2017.x) Custom repository version
+          U-Boot configuration (Using an in-tree board defconfig file)
+    (nanopi_neo)
+    [*] U-Boot needs dtc
+        U-Boot binary format ---> [*] Custom (specify below)
+                                  (u-boot-sunxi-with-spl.bin) U-Boot binary format: custom names
+
+               
+            
+
