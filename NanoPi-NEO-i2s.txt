@@ -38,3 +38,11 @@ NanoPi-NEOでi2s
       i2s@01c220000とpcm5102a-codecのstatusを "disabled"から"okay"に修正
 
 　　$ dtc -I dts sun8i-h3-nanopi-neo.dts -O dtb -o sun8i-h3-nanopi-neo.dtb
+
+(4) 標準のボリューム位置では音が全く聴こえないことに対する対策
+
+　　mpd.confに以下を加える。
+  
+  　audio_output {
+                format          "*:32:2"
+                
