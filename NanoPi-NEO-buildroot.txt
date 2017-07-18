@@ -1,4 +1,4 @@
-﻿NanoPi-NEOによるupnpgw作成のためのbuildroot設定　(make menuconfig）
+﻿NanoPi-NEO用upnpgw作成のためのbuildroot設定　(make menuconfig）
 
 
 (1) Target options
